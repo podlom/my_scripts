@@ -3,7 +3,7 @@
 Different scripts which might be useful in web servers configuration.
 
 
-1. MySQL maximum possible memory usage calculator.
+mysql_memory_calculator.php - MySQL maximum possible memory usage calculator.
 
 Script usage:
 
@@ -12,7 +12,7 @@ $ php mysql_memory_calculator.php -h localhost -u root -p password
 ```
 
 
-2. Apache (httpd) current memory usage, average process size memory calculator.
+calc_avg_httpd_size.php - Apache (httpd) current memory usage, average process size memory calculator.
 
 Script usage:
 
