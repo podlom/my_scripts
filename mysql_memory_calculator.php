@@ -25,12 +25,19 @@ $dbUser = isset($cmdArgs['u']) ? $cmdArgs['u'] : 'admin';
 $dbPass = isset($cmdArgs['p']) ? $cmdArgs['p'] : getPleskDbAdminPass();
 
 // check args
-if ( strlen($cmdArgs['h']) > 0 && strlen($cmdArgs['u']) > 0 && strlen($cmdArgs['p']) > 0 ) {
+if (
+	(strlen($dbHost) <= 0) &&
+	(strlen($dbUser) <= 0) &&
+	(strlen($dbPass) <= 0)
+) {
 	displayUsage();
 }
 
+// clean up password value from possible single quotes '
+$dbPass = str_replace("'", "", $dbPass);
+
 // get variables
-$getMySQLVariables = 'mysql -h ' . $cmdArgs['h'] . ' -u ' . $cmdArgs['u'] . ' -p' . $cmdArgs['p'] . ' -e "SHOW VARIABLES"';
+$getMySQLVariables = 'mysql -h ' . $dbHost . ' -u ' . $dbUser . ' -p\'' . $dbPass . '\' -e "SHOW VARIABLES"';
 echo __FILE__ . ' +' . __LINE__ . ' running command: ' . $getMySQLVariables . PHP_EOL;
 
 exec($getMySQLVariables, $aOut1, $resCmd1);
@@ -96,7 +103,6 @@ echo PHP_EOL . 'Maximum possible MySQL memory usage, Mb: ' . $res_mb1 . PHP_EOL;
  
 /**
  * displayUsage(): display a usage message and exit
- *
  */
 function displayUsage() {
 	$version = VERSION;
@@ -115,9 +121,16 @@ QQ;
 }
 
 
+/**
+ * getPleskDbAdminPass(): try to get plesk admin DB user
+ */
 function getPleskDbAdminPass() {
-	// `cat /etc/psa/.psa.shadow`
-	$cmd1 = 'cat /etc/psa/.psa.shadow';
+	$psaPasswordFile = '/etc/psa/.psa.shadow';
+	if (!is_readable($psaPasswordFile)) {
+		echo PHP_EOL . 'Error: file: ' . $psaPasswordFile . 'is not readable. You can run script with with sudo or pass -p <password> argument to script to fix this error.' . PHP_EOL;
+		return '';
+	}
+	$cmd1 = 'cat ' . $psaPasswordFile;
 	exec($cmd1, $aOut1, $resCmd1);
 	if (isset($aOut1[0]) && (strlen($aOut1[0]) > 0)) {
 		return $aOut1[0];
