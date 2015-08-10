@@ -20,9 +20,9 @@ define('VERSION', '1.0');
 $cmdArgs = getopt('h:u:p');
 
 // connect to mysql database
-$dbHost = isset($cmdArgs['h']) ? $cmdArgs['h'] : ini_get("mysqli.default_host");
-$dbUser = isset($cmdArgs['u']) ? $cmdArgs['u'] : ini_get("mysqli.default_user");
-$dbPass = isset($cmdArgs['p']) ? $cmdArgs['p'] : ini_get("mysqli.default_pw");
+$dbHost = isset($cmdArgs['h']) ? $cmdArgs['h'] : 'localhost';
+$dbUser = isset($cmdArgs['u']) ? $cmdArgs['u'] : 'admin';
+$dbPass = isset($cmdArgs['p']) ? $cmdArgs['p'] : getPleskDbAdminPass();
 
 // check args
 if ( strlen($cmdArgs['h']) > 0 && strlen($cmdArgs['u']) > 0 && strlen($cmdArgs['p']) > 0 ) {
@@ -30,7 +30,8 @@ if ( strlen($cmdArgs['h']) > 0 && strlen($cmdArgs['u']) > 0 && strlen($cmdArgs['
 }
 
 // get variables
-$getMySQLVariables = 'mysql -h ' . $cmdArgs['h'] . ' -u ' . $cmdArgs['u'] . ' -p' . $cmdArgs['p'] . ' -e "SHOW VARIABLES"';
+// $getMySQLVariables = 'mysql -h ' . $cmdArgs['h'] . ' -u ' . $cmdArgs['u'] . ' -p' . $cmdArgs['p'] . ' -e "SHOW VARIABLES"';
+$getMySQLVariables = 'mysql -u admin -p`cat /etc/psa/.psa.shadow` -e "SHOW VARIABLES"';
 echo __FILE__ . ' +' . __LINE__ . ' running command: ' . $getMySQLVariables . PHP_EOL;
 
 exec($getMySQLVariables, $aOut1, $resCmd1);
@@ -113,3 +114,16 @@ QQ;
 
 	exit;
 }
+
+
+function getPleskDbAdminPass() {
+	// `cat /etc/psa/.psa.shadow`
+	$cmd1 = 'cat /etc/psa/.psa.shadow';
+	exec($cmd1, $aOut1, $resCmd1);
+	if (isset($aOut1[0]) && (strlen($aOut1[0]) > 0)) {
+		return $aOut1[0];
+	} else {
+		return '';
+	}
+}
+
