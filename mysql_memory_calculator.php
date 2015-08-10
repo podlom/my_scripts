@@ -30,8 +30,7 @@ if ( strlen($cmdArgs['h']) > 0 && strlen($cmdArgs['u']) > 0 && strlen($cmdArgs['
 }
 
 // get variables
-// $getMySQLVariables = 'mysql -h ' . $cmdArgs['h'] . ' -u ' . $cmdArgs['u'] . ' -p' . $cmdArgs['p'] . ' -e "SHOW VARIABLES"';
-$getMySQLVariables = 'mysql -u admin -p`cat /etc/psa/.psa.shadow` -e "SHOW VARIABLES"';
+$getMySQLVariables = 'mysql -h ' . $cmdArgs['h'] . ' -u ' . $cmdArgs['u'] . ' -p' . $cmdArgs['p'] . ' -e "SHOW VARIABLES"';
 echo __FILE__ . ' +' . __LINE__ . ' running command: ' . $getMySQLVariables . PHP_EOL;
 
 exec($getMySQLVariables, $aOut1, $resCmd1);
