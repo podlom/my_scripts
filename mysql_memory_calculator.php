@@ -25,12 +25,19 @@ $dbUser = isset($cmdArgs['u']) ? $cmdArgs['u'] : ini_get("mysqli.default_user");
 $dbPass = isset($cmdArgs['p']) ? $cmdArgs['p'] : ini_get("mysqli.default_pw");
 
 // check args
-if ( strlen($cmdArgs['h']) > 0 && strlen($cmdArgs['u']) > 0 && strlen($cmdArgs['p']) > 0 ) {
+if (
+	(strlen($dbHost) <= 0) &&
+	(strlen($dbUser) <= 0) &&
+	(strlen($dbPass) <= 0)
+) {
 	displayUsage();
 }
 
+// clean up password value from possible single quotes '
+$dbPass = str_replace("'", "", $dbPass);
+
 // get variables
-$getMySQLVariables = 'mysql -h ' . $cmdArgs['h'] . ' -u ' . $cmdArgs['u'] . ' -p' . $cmdArgs['p'] . ' -e "SHOW VARIABLES"';
+$getMySQLVariables = 'mysql -h ' . $dbHost . ' -u ' . $dbUser . ' -p\'' . $dbPass . '\' -e "SHOW VARIABLES"';
 echo __FILE__ . ' +' . __LINE__ . ' running command: ' . $getMySQLVariables . PHP_EOL;
 
 exec($getMySQLVariables, $aOut1, $resCmd1);
