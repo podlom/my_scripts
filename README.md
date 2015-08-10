@@ -1,5 +1,7 @@
 # my_scripts
-Useful scripts used in my work
+
+Different scripts which might be useful in web servers configuration.
+
 
 1. MySQL maximum possible memory usage calculator.
 
