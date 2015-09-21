@@ -19,3 +19,12 @@ Script usage:
 ```
 $ php calc_avg_httpd_size.php
 ```
+
+get_email_user.php - Generate user account information based on user name
+
+Script usage:
+
+```
+$ php get_email_user.php FirstName LastName
+```
+
