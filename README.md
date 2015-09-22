@@ -28,3 +28,11 @@ Script usage:
 $ php get_email_user.php FirstName LastName
 ```
 
+get_access_info.pl - Generate access information for (sub)domain(s) passed as argument(s)
+
+Script usage:
+
+```
+$ ./get_access_info.pl test1.shkodenko.com [testn.com]
+```
+
