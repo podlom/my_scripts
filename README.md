@@ -36,3 +36,19 @@ Script usage:
 $ ./get_access_info.pl test1.shkodenko.com [testn.com]
 ```
 
+change_proxy_ip.sh - Change one IP address to another in Frox FTP, Squid HTTP & IPTables firewall one time automatically. Run as root administrator user
+
+Script usage:
+
+```
+# ./change_proxy_ip.sh Old_IP New_IP
+```
+
+squid_reconfigure.sh - Check Squid HTTP proxy syntax. If it is OK - reconfigure & reload service. Run as root administrator user
+
+Script usage:
+
+```
+# ./squid_reconfigure.sh
+```
+
