@@ -52,3 +52,10 @@ Script usage:
 # ./squid_reconfigure.sh
 ```
 
+generate_git_keys.sh - Generate git keys for new team member.
+
+Script usage:
+
+```
+# ./generate_git_keys.sh User.Login
+```
