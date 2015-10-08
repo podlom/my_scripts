@@ -59,3 +59,10 @@ Script usage:
 ```
 # ./generate_git_keys.sh User.Login
 ```
+
+proclog.sh - Get server statistics for future analysis. Can be added to cron to run automatically each N minutes.
+
+Script usage:
+```
+# ./proclog.sh
+```
