@@ -18,7 +18,7 @@ $iPasswdLen = 15;
 if( isset($argv[1]) && (strlen($argv[1]) > 0) ) {
 	$iUserPasswdLen = intval($argv[1]);
 	if ($iUserPasswdLen > 0) {
-		echo "Random password ({$iPasswdLen}) is: " . getRandomPasswd($iUserPasswdLen) . PHP_EOL;	
+		echo "Random password ({$iUserPasswdLen}) is: " . getRandomPasswd($iUserPasswdLen) . PHP_EOL;	
 		exit;
 	}
 }
