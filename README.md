@@ -74,3 +74,10 @@ Script usage:
 ```
 # ./proclog.sh
 ```
+
+- get_new_php_doc.sh - Get fresh copy of PHP documentation with user comments in English
+
+Script usage:
+```
+# ./get_new_php_doc.sh
+```
