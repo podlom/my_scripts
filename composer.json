@@ -1,0 +1,16 @@
+{
+    "name": "podlom/my_scripts",
+    "type": "project",
+    "description": "My_Scripts is a set of various scipts I'm using in my work.",
+    "keywords": ["Bash", "PHP", "Perl", "useful scripts"],
+    "homepage": "https://github.com/podlom/my_scripts",
+    "license": "GPL v.2",
+    "authors": [
+        {
+            "name": "Taras Shkodenko",
+            "email": "taras@shkodenko.com",
+            "homepage": "http://www.shkodenko.com",
+            "role": "Developer"
+        }
+    ]
+}
