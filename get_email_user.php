@@ -16,62 +16,60 @@ global $iPasswdLen;
 /* Default password length */
 $iPasswdLen = 15;
 
-if( isset($argv[1]) && (strlen($argv[1]) > 0) ) {
-	get_email_user($argv[1]);
+if ( isset($argv[1])
+    && (strlen($argv[1]) > 0)
+) {
+    get_email_user($argv[1]);
 } else {
-	echo "Script usage: php -f " . $argv[0] . " [Firstname Lastname]\n";
+    echo "Script usage: php -f " . $argv[0] . " [Firstname Lastname]\n";
 }
 
 exit;
 
-
-
 function get_random_password2($length = 15) {
-	$maximum_double_chars_in_pw = 0;
-	if($length >= 76) {
-		$length = 75;
-		echo "Maximum allowed password length set to: " . $length . PHP_EOL;
-	}
-	$maximum_double_chars_in_pw = intval($length / 10);
-	/* echo '$maximum_double_chars_in_pw: ' . $maximum_double_chars_in_pw . PHP_EOL; */
-	$chars = array(
-		range('a', 'z'),
-		range('A', 'Z'),
-		range('0', '9'),
-		array('&', '*', '!', '.', ',', '^', '~', '#', '?', '(', ')', '[', ']', '-', '_'),
-	);
-	if( !$length ) {
-		$length = rand(8, 12);
-	}
-	$password = "";
-	while( strlen($password) != $length ) {
-		$chars_set = $chars[rand(0, count($chars)-1)];
-		$char = $chars_set[rand(0, count($chars_set)-1)];
-		if( strlen($password) > 0 ) {
-			/* echo '$password: ' . $password . '; $maximum_double_chars_in_pw: ' . $maximum_double_chars_in_pw . '; $length: ' . $length . PHP_EOL; */
-			$p = strpos($password, $char);
-			if( $p === false ) {
-				$password .= $char;	
-			} else {
-				-- $maximum_double_chars_in_pw;
-				if($maximum_double_chars_in_pw > 0) {
-					$password .= $char;
-				}
-			}
-		} else {
-			$password .= $char;
-		}
-	}
-	return $password;
+    $maximum_double_chars_in_pw = 0;
+    if ($length >= 76) {
+        $length = 75;
+        echo "Maximum allowed password length set to: " . $length . PHP_EOL;
+    }
+    $maximum_double_chars_in_pw = intval($length / 10);
+    /* echo '$maximum_double_chars_in_pw: ' . $maximum_double_chars_in_pw . PHP_EOL; */
+    $chars = array(
+        range('a', 'z'),
+        range('A', 'Z'),
+        range('0', '9'),
+        array('&', '*', '!', '.', ',', '^', '~', '#', '?', '(', ')', '[', ']', '-', '_'),
+    );
+    if (! $length) {
+        $length = rand(8, 12);
+    }
+    $password = "";
+    while (strlen($password) != $length) {
+    	$chars_set = $chars[rand(0, count($chars)-1)];
+    	$char = $chars_set[rand(0, count($chars_set)-1)];
+    	if (strlen($password) > 0) {
+    		/* echo '$password: ' . $password . '; $maximum_double_chars_in_pw: ' . $maximum_double_chars_in_pw . '; $length: ' . $length . PHP_EOL; */
+		$p = strpos($password, $char);
+		if ($p === false) {
+			$password .= $char;	
+                } else {
+                    -- $maximum_double_chars_in_pw;
+                    if ($maximum_double_chars_in_pw > 0) {
+                    	$password .= $char;
+                    }
+                }
+	} else {
+            $password .= $char;
+        }
+    }
+    return $password;
 }
-
 
 function getRandomArrayValue($a) {
 	$k = array_rand($a);
 	$v = $a[$k];
 	return $v;
 }
-
 
 function getRandomChar() {
 	$chars = array_merge(
@@ -80,7 +78,6 @@ function getRandomChar() {
 	);
 	return getRandomArrayValue($chars);
 }
-
 
 function getRandomPasswd($passLen) {
 	if ($passLen > 0) {
@@ -92,7 +89,7 @@ function getRandomPasswd($passLen) {
 	if (is_array($aW1) && $cn1) {
 		// echo 'Read ' . $cn1 . ' words from dictionary: ' . $wordsList . PHP_EOL;
 		$pass = '';
-		while(strlen($pass) < $passLen) {
+		while (strlen($pass) < $passLen) {
 			$r1 = getRandomArrayValue($aW1);
 			// Fill In Password With Dictionary Words While It Is Not Long Enough
 			$pass .= trim(ucfirst($r1));
@@ -127,13 +124,12 @@ function getRandomPasswd($passLen) {
 		$fR3 = 0;
 		$r4 = rand(1, $passLen);
 		while (! $fR3) {
-			if (
-				($r4 == $r3) ||
-				($r4 == $r2)
+			if ( ($r4 == $r3)
+                            || ($r4 == $r2)
 			) {
-				$r4 = rand(1, $passLen);
+                            $r4 = rand(1, $passLen);
 			} else {
-				$fR3 = 1;
+                            $fR3 = 1;
 			}
 		}
 		$pass3 = substr($pass2, 0, $r4);
@@ -145,6 +141,19 @@ function getRandomPasswd($passLen) {
 	return 'Error generating random password!' . PHP_EOL;
 }
 
+function getIP() {
+    $aKeys = array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR');
+    foreach ($aKeys as $key) {
+        if (array_key_exists($key, $_SERVER) === true) {
+            foreach (explode(',', $_SERVER[$key]) as $ip) {
+                $ip = trim($ip); // just to be safe
+                if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false) {
+                    return $ip;
+                }
+            }
+        }
+    }
+}
 
 function get_email_user($user_name) {
 	global $iPasswdLen;
@@ -177,14 +186,12 @@ Webmail URL: https://webmail.shkodenko.com
 EOM;
 
 	// echo $msg;
-
-	if( !plm_write_file( $email_user_name4, $msg ) ) {
+	if (! plm_write_file( $email_user_name4, $msg )) {
 		echo __FILE__ . ' +' . __LINE__ . ' ' . __FUNCTION__ . ' Error: can`t write data below to log file:' . PHP_EOL;
 		echo $msg;
 	}
 
 }
-
 
 function plm_write_file( $email_user_name, $file_content ) {
 
