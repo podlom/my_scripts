@@ -34,6 +34,8 @@ cmdstack[9]="who"
 cmdstack[10]="w"
 cmdstack[11]="netstat -pant"
 cmdstack[12]="wget -O - -q -t 1 http://localhost/server-status"
+cmdstack[13]="/root/scripts/check-http-80.pl"
+cmdstack[14]="/root/scripts/mysql_process_list.sh"
 
 for i in "${cmdstack[@]}"
 do
