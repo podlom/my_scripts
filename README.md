@@ -68,7 +68,7 @@ Script usage:
 # ./generate_git_keys.sh User.Login
 ```
 
-- proclog.sh - Get server statistics for future analysis. Can be added to cron to run automatically each N minutes.
+- proclog.sh - Get server statistics for future analysis. Can be added to cron to run automatically each N minutes
 
 Script usage:
 ```
@@ -80,4 +80,11 @@ Script usage:
 Script usage:
 ```
 # ./get_new_php_doc.sh
+```
+
+- check-http-80.pl - Get number of HTTP connections made to web server Apache on WHM/cPanel servers
+
+Script usage:
+```
+# ./check-http-80.pl
 ```
