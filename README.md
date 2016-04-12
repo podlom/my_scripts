@@ -88,3 +88,10 @@ Script usage:
 ```
 # ./check-http-80.pl
 ```
+
+- mysql_process_list.sh - Get MySQL full process list data. Should be runned as user with MySQL root administrator privileges
+
+Script usage:
+```
+# ./mysql_process_list.sh
+```
