@@ -95,3 +95,10 @@ Script usage:
 ```
 # ./mysql_process_list.sh
 ```
+
+- git_co_branch.sh - Git working trees synchronization helper script
+
+Script usage:
+```
+# ./git_co_branch.sh BranchName
+```
