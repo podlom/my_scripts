@@ -23,7 +23,7 @@ exec($cmd1, $cmd_output, $res1);
 // echo __FILE__ . ' +' . __LINE__ . ' command result: ' . var_export($res1, 1) . PHP_EOL;
 // echo __FILE__ . ' +' . __LINE__ . ' command output: ' . PHP_EOL . var_export($cmd_output, 1) . PHP_EOL;
 
-if ( !empty($cmd_output) ) {
+if (!empty($cmd_output)) {
     foreach ($cmd_output as $rep_line) {
         echo $rep_line . PHP_EOL;
     }
