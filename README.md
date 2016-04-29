@@ -102,3 +102,10 @@ Script usage:
 ```
 # ./git_co_branch.sh BranchName
 ```
+
+- linux_plesk_backup_mysql_databases.sh - Backup MySQL databases for Linux servers with Plesk control panel example script. Should be runned as root administrator user
+
+Script usage:
+```
+# ./linux_plesk_backup_mysql_databases.sh
+```
