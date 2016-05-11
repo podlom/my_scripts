@@ -109,3 +109,10 @@ Script usage:
 ```
 # ./linux_plesk_backup_mysql_databases.sh
 ```
+
+- php_version_check.sh - PHP version checker
+
+Script usage:
+```
+$ ./php_version_check.sh
+```
