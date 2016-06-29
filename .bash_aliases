@@ -18,7 +18,7 @@ alias phpcf='/home/taras/bin/phpcf/phpcf'
 alias rnd_pass='/usr/bin/php /home/taras/my_scripts/get_random_password.php'
 alias rand_pass='/usr/bin/php /home/taras/my_scripts/get_random_password.php'
 #
-alias git_sand_co_rel="ssh taras@ssh-host-shkodenko.com 'cd /home/taras/public_html && pwd && git checkout rel && git status'"
+alias git_sand_co_master="ssh taras@ssh-host-shkodenko.com 'cd /home/taras/public_html && pwd && git checkout master && git status'"
 alias git_co_branch='/home/taras/my_scripts/git_co_branch.sh'
 #
 alias xdebug_sand='ssh -R 9898:127.0.0.1:9898 taras@ssh-host-shkodenko.com -p 2212'
