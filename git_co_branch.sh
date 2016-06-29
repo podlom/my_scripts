@@ -4,7 +4,7 @@ BRANCH_NAME="$1"
 LOCAL_WORK_TREE="/home/taras/MyProjects/ProjectN/cms"
 SAND_WORK_TREE="/home/projectn/cms"
 REMOTE_USER="taras.shkod"
-REMOTE_HOST="shkodenko.com"
+REMOTE_HOST="ssh-host-shkodenko.com"
 
 if [ ! -v BRANCH_NAME ]
 then
