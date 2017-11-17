@@ -116,3 +116,11 @@ Script usage:
 ```
 $ ./php_version_check.sh
 ```
+
+- grep.php - Search for strings in PHP files & report found matches.
+
+Script usage:
+
+```
+$ php grep.php "/path/to/web"
+```
