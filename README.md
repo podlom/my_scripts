@@ -110,6 +110,13 @@ Script usage:
 # ./linux_plesk_backup_mysql_databases.sh
 ```
 
+- backup_mysql_databases.sh - Backup MySQL databases for Linux servers with MySQL root user credentials defined in defaults /root/.my.cnf configuration file. Should be runned as root administrator user
+
+Script usage:
+```
+# ./backup_mysql_databases.sh
+```
+
 - php_version_check.sh - PHP version checker
 
 Script usage:
