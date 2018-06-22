@@ -46,5 +46,5 @@ function getPhoneLink($phone) {
 if (! empty($argv[1])) {
 	echo getPhoneLink($argv[1]) . PHP_EOL;
 } else {
-	echo 'Script usage: php ' . $argv[1] . ' you@email.com' . PHP_EOL;
+	echo 'Script usage: php ' . $argv[1] . ' "+380 (67) 446-42-12"' . PHP_EOL;
 }
