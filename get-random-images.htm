@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Get random images based on tags</title>
+  <style>
+  img {
+    height: 200px;
+    float: left;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+<h1 id="hdr1"></h1> 
+<div id="images"></div>
+ 
+<script>
+function getRandomInt(max)
+{
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
+function getTags()
+{
+    var retTags = "";
+    var sep = "";
+    var words = ["ink", "liner", "pen", "drawing", "graphic", "oil", "watercolor", "ballpen", "mandala", "illustration", "art", "artwork", "hatching", "inktober", "landscape", "portrait", "abstract", "sketchbook", "sketching", "pointilism", "masterpiece", "artist", "sketch", "doodle", "illustrator", "graphite"];
+    var numWords = 2;
+    var usedKey;
+    for (var i = 0; i < numWords; i++) {
+        var rndKey = getRandomInt(words.length);
+        if (i > 0) {
+            if (usedKey == rndKey) {
+                rndKey = getRandomInt(words.length);
+            }
+        }
+        retTags += sep + words[ rndKey ];
+        usedKey = rndKey;
+        sep = " ";
+    }
+    $("#hdr1").text('Images tagged with: ' + retTags);
+    return retTags;
+}
+
+(function() {
+  var flickerAPI = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+  $.getJSON( flickerAPI, {
+    tags: getTags(),
+    tagmode: "any",
+    format: "json"
+  })
+    .done(function( data ) {
+      $.each( data.items, function( i, item ) {
+        $( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
+        if ( i === 14 ) {
+          return false;
+        }
+      });
+    });
+})();
+
+window.setTimeout(function(){ window.location.reload(true); }, 7500);
+</script>
+ 
+</body>
+</html>
