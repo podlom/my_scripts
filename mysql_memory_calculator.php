@@ -20,9 +20,9 @@ define('VERSION', '1.0');
 $cmdArgs = getopt('h:u:p');
 
 // connect to mysql database
-$dbHost = isset($cmdArgs['h']) ? $cmdArgs['h'] : ini_get("mysqli.default_host");
-$dbUser = isset($cmdArgs['u']) ? $cmdArgs['u'] : ini_get("mysqli.default_user");
-$dbPass = isset($cmdArgs['p']) ? $cmdArgs['p'] : ini_get("mysqli.default_pw");
+$dbHost = isset($cmdArgs['h']) ? $cmdArgs['h'] : 'localhost';
+$dbUser = isset($cmdArgs['u']) ? $cmdArgs['u'] : 'admin';
+$dbPass = isset($cmdArgs['p']) ? $cmdArgs['p'] : getPleskDbAdminPass();
 
 // check args
 if (
@@ -103,7 +103,6 @@ echo PHP_EOL . 'Maximum possible MySQL memory usage, Mb: ' . $res_mb1 . PHP_EOL;
  
 /**
  * displayUsage(): display a usage message and exit
- *
  */
 function displayUsage() {
 	$version = VERSION;
@@ -120,3 +119,23 @@ QQ;
 
 	exit;
 }
+
+
+/**
+ * getPleskDbAdminPass(): try to get plesk admin DB user
+ */
+function getPleskDbAdminPass() {
+	$psaPasswordFile = '/etc/psa/.psa.shadow';
+	if (!is_readable($psaPasswordFile)) {
+		echo PHP_EOL . 'Error: file: ' . $psaPasswordFile . 'is not readable. You can run script with with sudo or pass -p <password> argument to script to fix this error.' . PHP_EOL;
+		return '';
+	}
+	$cmd1 = 'cat ' . $psaPasswordFile;
+	exec($cmd1, $aOut1, $resCmd1);
+	if (isset($aOut1[0]) && (strlen($aOut1[0]) > 0)) {
+		return $aOut1[0];
+	} else {
+		return '';
+	}
+}
+
