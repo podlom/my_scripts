@@ -5,6 +5,9 @@ DUMP_DATE=`date +'%Y-%m-%d_%H-%M'`
 DB_SQL_DUMP="${DB_NAME}__${DUMP_DATE}.sql"
 TAR_DB_DUMP="${DB_NAME}__${DUMP_DATE}.sql.tar.bz2"
 
+
+pwd
+
 echo "Started ${DB_NAME} backup at `date`..."
 
 mysqldump --defaults-file=.my.stg-horizont-db.cnf ${DB_NAME} > ${DB_SQL_DUMP}
