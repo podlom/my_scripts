@@ -1,5 +1,6 @@
 #!/bin/bash
 
+DB_CNF=".my.stg-horizont-db.cnf"
 DB_NAME="horizont_staging"
 DUMP_DATE=`date +'%Y-%m-%d_%H-%M'`
 DB_SQL_DUMP="${DB_NAME}__${DUMP_DATE}.sql"
@@ -10,7 +11,13 @@ pwd
 
 echo "Started ${DB_NAME} backup at `date`..."
 
-mysqldump --defaults-file=.my.stg-horizont-db.cnf ${DB_NAME} > ${DB_SQL_DUMP}
+if [[ ! -f ${DB_CNF} ]]
+then
+    echo "${DB_CNF} does not exist. DB backup has aborted."
+    exit 1
+fi
+
+mysqldump --defaults-file=${DB_CNF} ${DB_NAME} > ${DB_SQL_DUMP}
 ls -alh ${DB_SQL_DUMP}
 
 echo "Making archive..."
