@@ -21,7 +21,7 @@ then
     exit 1
 fi
 
-mysqldump --defaults-file=${DB_CNF} ${DB_NAME} > ${DB_SQL_DUMP}
+mysqldump --defaults-file=${DB_CNF} --lock-tables=false --single-transaction=true ${DB_NAME} > ${DB_SQL_DUMP}
 ls -alh ${DB_SQL_DUMP}
 
 echo "Making archive..."
