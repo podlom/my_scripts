@@ -1,10 +1,12 @@
 #!/bin/bash
 
-DB_CNF=".my.stg-horizont-db.cnf"
-DB_NAME="horizont_staging"
+PROJECT="horizont"
+DB_CNF=".my.stg-${PROJECT}-db.cnf"
+DB_NAME="staging_db_name"
 DUMP_DATE=`date +'%Y-%m-%d_%H-%M'`
-DB_SQL_DUMP="${DB_NAME}__${DUMP_DATE}.sql"
-TAR_DB_DUMP="${DB_NAME}__${DUMP_DATE}.sql.tar.bz2"
+ENV="stg"
+DB_SQL_DUMP="${ENV}__${DB_NAME}__${DUMP_DATE}.sql"
+TAR_DB_DUMP="${ENV}__${DB_NAME}__${DUMP_DATE}.sql.tar.bz2"
 
 
 pwd
