@@ -132,5 +132,12 @@ Script usage:
 $ php grep.php "/path/to/web"
 ```
 
+- slugify.php - Make URL slug from text.
+
+Script usage:
+
+```
+$ php slugify.php "Some Text To Slugify"
+```
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/L3L5LJ3TB)
