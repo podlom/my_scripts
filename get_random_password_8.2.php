@@ -3,11 +3,12 @@
 /*
  * Random passwords generator
  *
- * Generate random passwords based on given dictionary
+ * Generate random passwords based on given Linux dictionary using version PHP 8.2 or newer
  * 
  *
  * @author Shkodenko V. Taras (taras -at- shkodenko.com)
  *
+ * @version PHP 8.2.* or newer
  */
 
 date_default_timezone_set('UTC');
@@ -37,7 +38,13 @@ function getRandomChar() {
 		range('0', '9'),
 		['&', '*', '!', '.', ',', '^', '~', '#', '?', '(', ')', '[', ']', '-', '_']
 	);
-	return getRandomArrayValue($chars);
+    $r = new Random\Randomizer();
+    $key = $r->getInt(0, count($chars));
+    $shuffledArray = $r->shuffleBytes(implode('', $chars));
+    if (isset($shuffledArray[$key])) {
+        return $shuffledArray[$key];
+    }
+	return $shuffledArray[0];
 }
 
 function getRandomPasswd($passLen) {
