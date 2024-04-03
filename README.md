@@ -140,4 +140,12 @@ Script usage:
 $ php slugify.php "Some Text To Slugify"
 ```
 
+- fix-layout.php - Fix wrongly used text layout from latin to cyrillic
+
+```
+$ php fix-layout.php "lzre."
+дякую
+$
+```
+
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/L3L5LJ3TB)
