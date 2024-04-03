@@ -142,10 +142,22 @@ $ php slugify.php "Some Text To Slugify"
 
 - fix-layout.php - Fix wrongly used text layout from latin to cyrillic
 
+Script usage:
+
 ```
 $ php fix-layout.php "lzre."
 дякую
 $
+```
+
+- fix-layout.py - Fix wrongly used text layout from latin to cyrillic
+
+Script usage:
+
+```
+$ python3 fix-layout.py 'lzre.'
+дякую
+$ 
 ```
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/L3L5LJ3TB)
