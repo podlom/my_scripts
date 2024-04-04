@@ -28,12 +28,28 @@ Script usage:
 $ php get_email_user.php FirstName LastName
 ```
 
-- get_random_password.php - Random password generator based on given linux.words.txt dictionary
+- get_random_password_8.2.php - Random password generator based on given linux.words.txt dictionary (used modern PHP version 8.2 random extesion features)
 
 Script usage:
 
 ```
-$ php get_random_password.php [Optional password length]
+$ php get_random_password_8.2.php [Optional password length]
+```
+
+- get_random_password.py - Random password generator based on given linux.words.txt
+
+Script usage examples:
+
+```commandline
+$ python3 get_random_password.py 19 - [Optional password length]
+Random password (19) is: Inco]upSty0rof9oamSimp
+$ 
+```
+
+```commandline
+$ python3 get_random_password.py
+Random password (15) is: W1)&oodreeveSoleno
+$ 
 ```
 
 - get_access_info.pl - Generate access information for (sub)domain(s) passed as argument(s)
