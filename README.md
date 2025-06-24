@@ -176,4 +176,41 @@ $ python3 fix-layout.py 'lzre.'
 $ 
 ```
 
+- macos_disk_cleanup_report.sh - Check and display your macOs PC to clean up disk space
+
+Script usage:
+
+```bash
+./macos_disk_cleanup_report.sh
+```
+
+- md_to_pdf.py - Convert Markdown (.md) files to PDF
+
+Installation procedure (macOs): 
+
+```bash
+brew install cairo pango gdk-pixbuf libffi 
+```
+
+Init and activate Python virtual environment:
+
+```bash
+python3 -m venv venv-md2pdf
+source venv-md2pdf/bin/activate
+```
+
+Install Python packages (first time only):
+
+```bash
+(venv-md2pdf) $ pip install --upgrade pip
+(venv-md2pdf) $ pip install markdown weasyprint
+```
+
+Run conversation file.md to file.pdf example:
+
+```bash
+(venv-md2pdf) $ python md_to_pdf.py file.md file.pdf
+```
+
+
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/L3L5LJ3TB)
